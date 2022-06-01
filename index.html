@@ -1,17 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myFirstApp">
 <head>
     <meta charset="UTF-8">
     <title>angularjs</title>
+    <script src="angular.min.js"></script>
     <script src="app.js"></script>
+
 </head>
 <body>
+    <h1>Angular JS App</h1>
+    <div ng-controller="MyFirstController">
+            <!-- {{sayhello()}} <input type="text" ng-model="name">
+            <br />
+            <br />
+            Inside my input name is {{name}} -->
+            <div ng-controller="NameCalculatorController">
+                {{sayhello()}}
+                <input type="text"
+                 ng-model="name"
+                 ng-keyup="displayNumeric()"
+                 >
+                <br />
+                <br />
+                Inside my input name is {{totalValue}}
+                Inside my input name is {{name}}
+            </div>
 
-    <div id="nameCalculator">
-      <div>
-          Your name: <input type="text"  id="name">
-      </div>
-      <div id="output"></div>
+
     </div>
+    <br />
+    <br />
+    <div class="" ng-controller="DIApp">
+      <input type="text" class="input"
+       ng-model="name"
+       ng-blur="upper();">
+    </div>
+
 </body>
 </html>

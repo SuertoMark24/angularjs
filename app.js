@@ -1,25 +1,45 @@
-var student = {
-  name:"",
-  type:"student"
-};
+(function(){
+  'use strict';
 
-document.addEventListener('DOMContentLoad', contentload);
+  var app = angular.module('myFirstApp', [])
+  app.controller('MyFirstController',MyFirstController);
+  app.controller('NameCalculatorController',NameCalculatorController);
+  app.controller('DIApp',DIapp);
 
-function contentload(event){
-  document.getElementById('name').addEventListener("keyup", keyUp);
-}
-function keyUp(event){
-  calculateNumericOutput();
-}
-function calculateNumericOutput(){
-  student.name = document.getElementById('name').value;
-  alert(student.name)
-  var totalNameValue = 0;
-  for(var i=0;i < student.name.length; i++){
-    totalNameValue += student.name.charCodeAt(i);
+  function MyFirstController($scope, $filter){
+    $scope.name = "Mark"
+    $scope.sayhello = function(){
+    return "Your name is ";
+    };
+  }
+  function NameCalculatorController($scope,$injector){
+      $scope.name = "";
+      $scope.totalValue = 0;
+      $scope.displayNumeric = function(){
+        var totalNameValue = calc($scope.name)
+        $scope.totalValue = totalNameValue;
+      };
+
+      function calc(string){
+        var totalstringvalue = 0 ;
+
+        for(var i = 0; i < string.length; i++){
+          totalstringvalue += string.charCodeAt(i);
+        }
+
+        return totalstringvalue;
+      }
+        console.log($injector.annotate(MyFirstController));
+  }
+  function DIapp($scope,
+                $filter,
+                $injector) {
+    $scope.name ="mark";
+    $scope.upper = function(){
+      var upCase = $filter('uppercase');
+      $scope.name = upCase($scope.name);
+    };
+
   }
 
-  var output = " Total Numeric value is" + totalNameValue;
-  document.getElementById('output').innerText = output;
-  alert(output)
-}
+})();
